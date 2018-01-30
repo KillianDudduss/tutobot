@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-var youtubeStream = require('youtube-audio-stream')
+//var youtubeStream = require('youtube-audio-stream')
 
 var bot = new Discord.Client();
 
@@ -55,7 +55,7 @@ bot.on("message", async message => {
     // And we get the bot to say the thing: 
     message.channel.send(sayMessage);
   }
-  
+  /*
 	if (command == "play") {
 		let voiceChannel = message.guild.channels
       .filter(function (channel) { return channel.type === 'voice' })
@@ -77,7 +77,7 @@ bot.on("message", async message => {
 				} catch (exception) {
 					res.status(500).send(exception)
 				}
-			/*
+			
         let stream = YoutubeStream(args[1])
         stream.on('error', function () {
           message.reply("Je n'ai pas réussi à lire cette vidéo :(")
@@ -90,10 +90,10 @@ bot.on("message", async message => {
           .on('end', function () {
             connection.disconnect()
           })
-			*/
+			
       })
 	} 
-	
+	*/
 	/*
   if(command === "kick") {
     // This command must be limited to mods and admins. In this example we just hardcode the role names.

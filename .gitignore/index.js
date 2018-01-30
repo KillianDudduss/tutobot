@@ -39,6 +39,9 @@ bot.on("message", async message => {
   if(command === "help") {
     // Calculates ping between sending a message and editing it, giving a nice round-trip latency.
     // The second ping is an average latency between the bot and the websocket server (one-way, not round-trip)
+    
+    // We delete the command message (sneaky, right?). The catch just ignores the error with a cute smiley thing.
+    message.delete().catch(O_o=>{}); 
     const m = message.channel.send("Il existe pour l'instant deux commandes ping, et help!");
   }
 	

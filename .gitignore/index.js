@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+var youtubeStream = require('youtube-audio-stream')
 
 var bot = new Discord.Client();
 
@@ -55,6 +56,45 @@ bot.on("message", async message => {
     message.channel.send(sayMessage);
   }
   
+	if (command == "play") {
+		let voiceChannel = message.guild.channels
+      .filter(function (channel) { return channel.type === 'voice' })
+      .first()
+    // On récupère les arguments de la commande 
+    // il faudrait utiliser une expression régulière pour valider le lien youtube
+		
+		const ytMessage = args.join(" ");
+    let args = message.content.split(' ')
+    // On rejoint le channel audio
+    voiceChannel
+      .join()
+      .then(function (connection) {
+        // On démarre un stream à partir de la vidéo youtube
+			
+				var requestUrl = 'http://youtube.com/watch?v='
+				try {
+					youtubeStream(requestUrl).pipe(ytMessage)
+				} catch (exception) {
+					res.status(500).send(exception)
+				}
+			/*
+        let stream = YoutubeStream(args[1])
+        stream.on('error', function () {
+          message.reply("Je n'ai pas réussi à lire cette vidéo :(")
+          connection.disconnect()
+        })
+        // On envoie le stream au channel audio
+        // Il faudrait ici éviter les superpositions (envoie de plusieurs vidéo en même temps)
+        connection
+          .playStream(stream)
+          .on('end', function () {
+            connection.disconnect()
+          })
+			*/
+      })
+	} 
+	
+	/*
   if(command === "kick") {
     // This command must be limited to mods and admins. In this example we just hardcode the role names.
     // Please read on Array.some() to understand this bit: 
@@ -118,6 +158,8 @@ bot.on("message", async message => {
     message.channel.bulkDelete(fetched)
       .catch(error => message.reply(`Couldn't delete messages because of: ${error}`));
   }
+	*/
+	
 });
 
 bot.login("NDA3Njg5ODQ1MTE3NTUwNTky.DVFNsw.v1a4ej6CrRvyQeAx7WXYlPwbKcw");
